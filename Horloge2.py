@@ -20,6 +20,7 @@ def change_time(new_hour):
     global list_time_alarm
     list_time_alarm = list(list_time_alarm)
     list_new_hour = list(new_hour)
+
     while status is True:
         list_new_hour[2] += 1
         print("\r", list_new_hour[0], ":", list_new_hour[1], ":", list_new_hour[2], end="")  #Remove the former line for clarity
@@ -31,8 +32,10 @@ def change_time(new_hour):
             list_new_hour[1] = 0
         if list_new_hour[0] >= 24:
             list_new_hour[0] = 0
+
         if list_new_hour == list_time_alarm:        # Starts the alarm function if the two list match
             alarm(list_time_alarm)
+
         time.sleep(1)
 
 
