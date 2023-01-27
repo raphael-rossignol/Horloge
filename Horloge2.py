@@ -1,14 +1,23 @@
 import time
 status = True
+list_time_alarm = (0, 0, 5)
+
+
+def alarm(time_alarm):
+    if time_alarm == list_time_alarm:
+        print("It is time")
+    else:
+        pass
 
 
 def change_time(new_hour):
+    global list_time_alarm
+    list_time_alarm = list(list_time_alarm)
     list_new_hour = list(new_hour)
     while status is True:
         list_new_hour[2] += 1
-        alarm()
         print("\r", list_new_hour[0], ":", list_new_hour[1], ":", list_new_hour[2], end="")
-        if list_new_hour[2] >= 60:
+        if list_new_hour[2] >= 59:
             list_new_hour[1] += 1
             list_new_hour[2] = 0
         if list_new_hour[1] >= 60:
@@ -16,20 +25,12 @@ def change_time(new_hour):
             list_new_hour[1] = 0
         if list_new_hour[0] >= 24:
             list_new_hour[0] = 0
+        if list_new_hour == list_time_alarm:
+            alarm(list_time_alarm)
         time.sleep(1)
-        return list_new_hour
 
 
-change_time((23, 59, 30))
-
-
-def alarm(time_alarm):
-    list_time_alarm = list(time_alarm)
-    if list_time_alarm == list_new_hour:
-        print("It is time")
-
-
-alarm((0, 0, 5))
+change_time((23, 59, 50))
 
 
 def display_time():
